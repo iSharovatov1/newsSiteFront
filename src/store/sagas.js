@@ -1,5 +1,5 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { chooseState } from './reducer'
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { chooseState } from './reducer';
 
 function* fetchUser(action) {
    try {
@@ -8,14 +8,10 @@ function* fetchUser(action) {
    } catch (e) {
       yield put({type: "USER_FETCH_FAILED", message: e.message});
    }
-}
+};
 
 function* mySaga() {
   yield takeEvery("USER_FETCH_REQUESTED", fetchUser);
-}
-
-// function* mySaga() {
-//   yield takeLatest("USER_FETCH_REQUESTED", fetchUser);
-// }
+};
 
 export default mySaga;

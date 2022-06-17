@@ -2,8 +2,8 @@ import { createReducer, createAction } from '@reduxjs/toolkit';
 export const chooseState = createAction('choose_state');
 
 const initialState = {
-    stateCount: 0
-}
+    stateCount: 0,
+};
 
 const reducers = createReducer(initialState, (builder) => {
     builder
@@ -12,4 +12,4 @@ const reducers = createReducer(initialState, (builder) => {
     })
   });
 
-  export default reducers
+  export default reducers;
