@@ -1,17 +1,17 @@
 import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
-import { chooseState } from './reducer';
+import { getNews } from './actions';
 
-function* fetchUser(action) {
+function* fetchNews(action) {
    try {
-      const user = yield call(chooseState.fetchUser, action.payload.userId);
-      yield put({type: "USER_FETCH_SUCCEEDED", user: user});
+      const news = yield call(getNews, action.payload);
+      yield put({type: "NEWS_FETCH_SUCCEEDED", news: news});
    } catch (e) {
-      yield put({type: "USER_FETCH_FAILED", message: e.message});
+      yield put({type: "NEWS_FETCH_FAILED", message: e.message});
    }
 };
 
 function* mySaga() {
-  yield takeEvery("USER_FETCH_REQUESTED", fetchUser);
+  yield takeEvery("NEWS_FETCH_REQUESTED", fetchNews);
 };
 
 export default mySaga;

@@ -1,8 +1,13 @@
-import './App.css';
+import styles from './App.module.scss';
+
+import { News } from './components/News'
 
 function App() {
   return (
-    <div className="App">gfgfgfg</div>
+    <div className={styles.app}>
+      <div className={styles.title}>News</div>
+      <News/>
+    </div>
   );
 }
 

@@ -1,14 +1,21 @@
-import { createReducer, createAction } from '@reduxjs/toolkit';
-export const chooseState = createAction('choose_state');
+import { createReducer } from '@reduxjs/toolkit';
+import { GET_USERS } from "./constants";
 
 const initialState = {
-    stateCount: 0,
+    news: [],
 };
 
 const reducers = createReducer(initialState, (builder) => {
     builder
-    .addCase(chooseState, (state, action) => {
-      return {...state, stateCount: action.payload}
+    .addCase(GET_USERS.PENDING, (state, action) => {
+      return {...state}
+    })
+    .addCase(GET_USERS.FULFILLED, (state, action) => {
+      return {...state, news: action.payload}
+    })
+    .addCase(GET_USERS.REJECTED, (state, action) => {
+      console.log(action);
+      return {...state}
     })
   });
 
