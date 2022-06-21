@@ -14,7 +14,6 @@ const reducers = createReducer(initialState, (builder) => {
       return {...state, news: action.payload}
     })
     .addCase(GET_USERS.REJECTED, (state, action) => {
-      console.log(action);
       return {...state}
     })
   });
