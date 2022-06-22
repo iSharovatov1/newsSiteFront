@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { GET_USERS } from "./constants";
+import { GET_USERS } from './constants';
 
 const initialState = {
     news: [],
