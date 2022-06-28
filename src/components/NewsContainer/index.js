@@ -1,23 +1,26 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getNews } from '../../store/actions';
-import styles from './News.module.scss';
 
-export const News = () => {
+import styles from './NewsContainer.module.scss';
+
+import { getNews } from '../../store/actions';
+
+export const NewsContainer = () => {
   const dispatch = useDispatch();
-  const news = useSelector(state => state.news);
+  const news = useSelector((state) => state.news);
 
   useEffect(() => {
-    dispatch(getNews(5));
+    dispatch(getNews());
   }, []);
 
   return (
     <div className={styles.newsContainer}>
-      {news?.map(item => 
-        <div className={styles.news}>
+      {news?.map((item, index) => (
+        <div className={styles.news} key={index}>
           <div className={styles.title}>{item.title}</div>
           <div className={styles.text}>{item.text}</div>
         </div>
+      )
       )}
     </div>
   )

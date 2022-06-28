@@ -1,11 +1,12 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
+import { getAllnews } from '../axiosRequests'
 
 export const getNews = createAsyncThunk(
   'GET_NEWS',
   async () => {
-    let data;
-    await axios.get('http://localhost:8080/news/').then(res => data = res.data);
-    return data;
+    const resp = await getAllnews()
+    return resp
   }
 );
+
+export const changeCount = createAction('COUNT_FETCH_REQUESTED')
