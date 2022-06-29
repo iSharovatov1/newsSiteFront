@@ -5,12 +5,11 @@ import * as Yup from 'yup';
 import styles from './Login.module.scss';
 
 import { login } from '../../axiosRequests';
-import { CustomInput } from '../../components/CustomInput';
-import { AuthBtn } from '../../components/AuthBtn';
-import { AuthContainer } from '../../components/AuthContainer';
+import CustomInput from '../../components/CustomInput';
+import AuthBtn from '../../components/AuthBtn';
+import AuthContainer from '../../components/AuthContainer';
 
-export const Login = () => {
-
+function Login() {
   const formik = useFormik({
     initialValues: {
       username: '',
@@ -22,7 +21,7 @@ export const Login = () => {
       password: Yup.string().required('Обязательное поле').min(6, 'пароль должен имееть более 6 символов'),
     }),
 
-    onSubmit: values => login(values)
+    onSubmit: (values) => login(values),
   });
 
   return (
@@ -30,22 +29,30 @@ export const Login = () => {
       <div className={styles.title}>Вход</div>
       <div className={styles.inputContainer}>
         <CustomInput
-          id='username'
-          labelTExt='Введите email'
-          formik={formik} 
-          type='text'
+          id="username"
+          labelTExt="Введите email"
+          formik={formik}
+          type="text"
           isObligatory
         />
         <CustomInput
-          id='password'
-          labelTExt='Введите пароль'
+          id="password"
+          labelTExt="Введите пароль"
           formik={formik}
-          type='password'
+          type="password"
           isObligatory
         />
-        <AuthBtn type='submit'>Войти</AuthBtn>
+        <AuthBtn>Войти</AuthBtn>
       </div>
-      <div className={styles.src} onClick={() => window.location.pathname = '/registration'}>Зарегистрировать аккаунт</div>
+      <button
+        type="button"
+        className={styles.src}
+        onClick={function () { window.location.pathname = '/registration'; }}
+      >
+        Зарегистрировать аккаунт
+      </button>
     </AuthContainer>
-  )
+  );
 }
+
+export default Login;

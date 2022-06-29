@@ -5,7 +5,7 @@ import styles from './NewsContainer.module.scss';
 
 import { getNews } from '../../store/actions';
 
-export const NewsContainer = () => {
+function NewsContainer() {
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
 
@@ -15,13 +15,14 @@ export const NewsContainer = () => {
 
   return (
     <div className={styles.newsContainer}>
-      {news?.map((item, index) => (
-        <div className={styles.news} key={index}>
+      {news?.map((item) => (
+        <div className={styles.news} key={item.id}>
           <div className={styles.title}>{item.title}</div>
           <div className={styles.text}>{item.text}</div>
         </div>
-      )
-      )}
+      ))}
     </div>
-  )
+  );
 }
+
+export default NewsContainer;
