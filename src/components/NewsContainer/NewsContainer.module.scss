@@ -1,0 +1,24 @@
+.newsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .news {
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: fit-content;
+    padding: 25px;
+    background-color: lightgrey;
+    border-radius: 10px;
+    margin: 10px;
+    .title {
+      font-size: 30px;
+      font-weight: 600;
+      text-align: center;
+    }
+    .text {
+      font-size: 24px;
+      font-weight: 400;
+    }
+  }
+}

@@ -1,15 +1,18 @@
-import { createReducer, createAction } from '@reduxjs/toolkit';
-export const chooseState = createAction('choose_state');
-
 const initialState = {
-    stateCount: 0,
+  news: [],
 };
 
-const reducers = createReducer(initialState, (builder) => {
-    builder
-    .addCase(chooseState, (state, action) => {
-      return {...state, stateCount: action.payload}
-    })
-  });
+function reducers(state = initialState, action) {
+  switch (action.type) {
+    case 'GET_ALL_NEWS_PENDING':
+      return state;
+    case 'GET_ALL_NEWS_FULFILLED':
+      return { ...state, news: action.news };
+    case 'GET_ALL_NEWS_REJECTED':
+      return state;
+    default:
+      return state;
+  }
+}
 
-  export default reducers;
+export default reducers;

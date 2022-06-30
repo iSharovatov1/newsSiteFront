@@ -1,17 +1,18 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
-import { chooseState } from './reducer';
+import { call, put, takeEvery } from 'redux-saga/effects';
+import { getAllnews } from '../axiosRequests';
+import GET_ALL_NEWS from './constants';
 
-function* fetchUser(action) {
-   try {
-      const user = yield call(chooseState.fetchUser, action.payload.userId);
-      yield put({type: "USER_FETCH_SUCCEEDED", user: user});
-   } catch (e) {
-      yield put({type: "USER_FETCH_FAILED", message: e.message});
-   }
-};
+function* fetchNews(action) {
+  try {
+    const news = yield call(getAllnews, action.payload);
+    yield put({ type: GET_ALL_NEWS.FULFILLED, news });
+  } catch (e) {
+    yield put({ type: GET_ALL_NEWS.REJECTED, message: e.message });
+  }
+}
 
 function* mySaga() {
-  yield takeEvery("USER_FETCH_REQUESTED", fetchUser);
-};
+  yield takeEvery(GET_ALL_NEWS.PENDING, fetchNews);
+}
 
 export default mySaga;

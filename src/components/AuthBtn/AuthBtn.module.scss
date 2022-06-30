@@ -1,0 +1,15 @@
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+  .authBtn {
+    border: 1px solid #a4a2a2;
+    border-radius: 4px;
+    background-color: white;
+    width: 150px;
+    height: 45px;
+    font-size: 16px;
+    color: rgb(88, 88, 88);
+  } 
+}
