@@ -11,9 +11,9 @@ function App() {
     <div className={styles.app}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path="/news" element={<News />} />
+          <Route path="/" element={<News />} />
         </Routes>
       </BrowserRouter>
     </div>

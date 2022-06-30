@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './NewsContainer.module.scss';
 
-import { getNews } from '../../store/actions';
+import getAllNews from '../../store/actions';
 
 function NewsContainer() {
   const dispatch = useDispatch();
   const news = useSelector((state) => state.news);
 
   useEffect(() => {
-    dispatch(getNews());
+    dispatch(getAllNews());
   }, []);
 
   return (

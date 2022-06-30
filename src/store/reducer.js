@@ -1,16 +1,18 @@
-import { createReducer } from '@reduxjs/toolkit';
-import GET_USERS from './constants';
-
 const initialState = {
   news: [],
-  count: 0,
 };
 
-const reducers = createReducer(initialState, (builder) => {
-  builder
-    .addCase(GET_USERS.PENDING, (state) => state)
-    .addCase(GET_USERS.FULFILLED, (state, action) => ({ ...state, news: action.payload }))
-    .addCase(GET_USERS.REJECTED, (state) => state);
-});
+function reducers(state = initialState, action) {
+  switch (action.type) {
+    case 'GET_ALL_NEWS_PENDING':
+      return state;
+    case 'GET_ALL_NEWS_FULFILLED':
+      return { ...state, news: action.news };
+    case 'GET_ALL_NEWS_REJECTED':
+      return state;
+    default:
+      return state;
+  }
+}
 
 export default reducers;

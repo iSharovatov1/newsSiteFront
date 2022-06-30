@@ -1,12 +1,5 @@
-import { createAsyncThunk, createAction } from '@reduxjs/toolkit';
-import { getAllnews } from '../axiosRequests';
+import GET_ALL_NEWS from './constants';
 
-export const getNews = createAsyncThunk(
-  'GET_NEWS',
-  async () => {
-    const resp = await getAllnews();
-    return resp;
-  },
-);
+const getAllNews = (payload) => ({ type: GET_ALL_NEWS.PENDING, payload });
 
-export const changeCount = createAction('COUNT_FETCH_REQUESTED');
+export default getAllNews;

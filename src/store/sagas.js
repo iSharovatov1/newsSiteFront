@@ -1,17 +1,18 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { changeCount } from './actions';
+import { getAllnews } from '../axiosRequests';
+import GET_ALL_NEWS from './constants';
 
 function* fetchNews(action) {
   try {
-    const count = yield call(changeCount, action.payload);
-    yield put({ type: 'COUNT_FETCH_SUCCEEDED', count: count.payload });
+    const news = yield call(getAllnews, action.payload);
+    yield put({ type: GET_ALL_NEWS.FULFILLED, news });
   } catch (e) {
-    yield put({ type: 'COUNT_FETCH_FAILED', message: e.message });
+    yield put({ type: GET_ALL_NEWS.REJECTED, message: e.message });
   }
 }
 
 function* mySaga() {
-  yield takeEvery('COUNT_FETCH_REQUESTED', fetchNews);
+  yield takeEvery(GET_ALL_NEWS.PENDING, fetchNews);
 }
 
 export default mySaga;

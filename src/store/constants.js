@@ -1,7 +1,7 @@
-const GET_USERS = {
-  PENDING: 'GET_NEWS/pending',
-  FULFILLED: 'GET_NEWS/fulfilled',
-  REJECTED: 'GET_NEWS/rejected',
+const GET_ALL_NEWS = {
+  PENDING: 'GET_ALL_NEWS_PENDING',
+  FULFILLED: 'GET_ALL_NEWS_FULFILLED',
+  REJECTED: 'GET_ALL_NEWS_REJECTED',
 };
 
-export default GET_USERS;
+export default GET_ALL_NEWS;

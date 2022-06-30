@@ -1,10 +1,7 @@
 import axios from 'axios';
 
-axios.interceptors.response.use((response) => {
-  console.log('interceptors', response);
-  return response;
-}, (error) => {
-  if (error.status === 401) {
+axios.interceptors.response.use((response) => response, (error) => {
+  if (error.response.status === 401) {
     localStorage.removeItem('token');
     window.location.pathname = '/login';
   }
@@ -49,7 +46,7 @@ export const login = async (data) => {
 
   if (resp.status === 200) {
     localStorage.setItem('token', resp.data.token);
-    window.location.pathname = '/news';
+    window.location.pathname = '/';
   }
 };
 
