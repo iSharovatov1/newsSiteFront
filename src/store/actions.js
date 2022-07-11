@@ -1,13 +1,3 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+const getNews = { type: 'NEWS_FETCH_REQUESTED' };
 
-export const getNews = createAsyncThunk(
-  'GET_NEWS',
-  async () => {
-    const { data } = await axios({
-      method: 'get',
-      url: 'http://localhost:8080/news/'
-    });
-    return data;
-  }
-);
+export default getNews;

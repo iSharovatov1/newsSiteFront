@@ -1,17 +1,17 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
-import { getNews } from './actions';
+import { call, put, takeEvery } from 'redux-saga/effects';
+import getNews from '../api/api';
 
-function* fetchNews(action) {
-   try {
-      const news = yield call(getNews, action.payload);
-      yield put({type: "NEWS_FETCH_SUCCEEDED", news: news});
-   } catch (e) {
-      yield put({type: "NEWS_FETCH_FAILED", message: e.message});
-   }
-};
+function* getNewsWorker(action) {
+  try {
+    const news = yield call(getNews, action.payload);
+    yield put({ type: 'NEWS_FETCH_SUCCEEDED', news });
+  } catch (e) {
+    yield put({ type: 'NEWS_FETCH_FAILED', message: e.message });
+  }
+}
 
-function* mySaga() {
-  yield takeEvery("NEWS_FETCH_REQUESTED", fetchNews);
-};
+function* newsSaga() {
+  yield takeEvery('NEWS_FETCH_REQUESTED', getNewsWorker);
+}
 
-export default mySaga;
+export default newsSaga;

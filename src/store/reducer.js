@@ -1,21 +1,21 @@
-import { createReducer } from '@reduxjs/toolkit';
-import { GET_USERS } from './constants';
-
 const initialState = {
-    news: [],
+  news: [],
+  loading: false,
+  error: '',
 };
 
-const reducers = createReducer(initialState, (builder) => {
-    builder
-    .addCase(GET_USERS.PENDING, (state, action) => {
-      return {...state}
-    })
-    .addCase(GET_USERS.FULFILLED, (state, action) => {
-      return {...state, news: action.payload}
-    })
-    .addCase(GET_USERS.REJECTED, (state, action) => {
-      return {...state}
-    })
-  });
+function reducers(state = initialState, action = null) {
+  switch (action.type) {
+    case 'NEWS_FETCH_REQUESTED': return { ...state, loading: true, error: '' };
+    case 'NEWS_FETCH_SUCCEEDED': return {
+      ...state,
+      news: action.news,
+      loading: false,
+      error: '',
+    };
+    case 'NEWS_FETCH_FAILED': return { ...state, loading: false, error: action.message };
+    default: return { ...state };
+  }
+}
 
-  export default reducers;
+export default reducers;
