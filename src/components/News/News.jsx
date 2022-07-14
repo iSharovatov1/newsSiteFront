@@ -1,11 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { CircularProgress } from '@mui/material';
 
+import { getNews } from '../../store/action/newsActions';
+
 import styles from './News.module.scss';
 
-function News({ news, loading, error }) {
+function News() {
+  const dispatch = useDispatch();
+  const { news, loading, error } = useSelector((state) => state);
+
+  useEffect(() => {
+    dispatch(getNews());
+  }, []);
+
   return (
     <div className={styles.newsContainer}>
       <div className={styles.title}>News</div>
@@ -30,11 +39,5 @@ function News({ news, loading, error }) {
     </div>
   );
 }
-
-News.propTypes = {
-  news: PropTypes.array.isRequired,
-  loading: PropTypes.bool.isRequired,
-  error: PropTypes.string.isRequired,
-};
 
 export default React.memo(News);
