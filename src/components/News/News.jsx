@@ -1,17 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { CircularProgress } from '@mui/material';
+
 import styles from './News.module.scss';
 
 function News({ news, loading, error }) {
   return (
     <div className={styles.newsContainer}>
-      {loading && <>loading</>}
-      {error && <>error</>}
-      {news.lenght
+      <div className={styles.title}>News</div>
+      {loading && <CircularProgress />}
+      {error && `${error}`}
+      {news.lenght === 0
         ? (
           <div>
-            {news?.map((item) => (
+            {news.map((item) => (
               <div className={styles.news} key={item.id}>
                 <div className={styles.title}>{item.title}</div>
                 <div className={styles.text}>{item.text}</div>
@@ -21,8 +24,7 @@ function News({ news, loading, error }) {
         )
         : (
           <div>
-            {!loading && !error
-            && <>Нет новостей</>}
+            {!loading && !error && 'Нет новостей'}
           </div>
         )}
     </div>
@@ -30,7 +32,7 @@ function News({ news, loading, error }) {
 }
 
 News.propTypes = {
-  news: PropTypes.arrayOf.isRequired,
+  news: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
   error: PropTypes.string.isRequired,
 };
