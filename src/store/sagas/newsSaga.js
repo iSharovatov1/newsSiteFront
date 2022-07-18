@@ -2,11 +2,11 @@ import { call, put, takeEvery } from 'redux-saga/effects';
 
 import * as ACTION_TYPES from '../../constants/actionTypes';
 import { getNewsSuccess, getNewsFailed } from '../action/newsActions';
-import getNews from '../../api/newsApi';
+import newsApi from '../../api/newsApi';
 
-function* fetchNewsWorker(action) {
+function* fetchNewsWorker({ payload }) {
   try {
-    const news = yield call(getNews, action.payload);
+    const news = yield call(newsApi.getNews, payload);
     yield put(getNewsSuccess(news));
   } catch (e) {
     yield put(getNewsFailed({ message: e.message }));
