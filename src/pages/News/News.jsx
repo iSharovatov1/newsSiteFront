@@ -1,25 +1,35 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { CircularProgress } from '@mui/material';
 
+import NewsComponent from '../../components/NewsComponent';
 import { getNews } from '../../store/action/newsActions';
+
 import styles from './News.module.scss';
 
-function News() {
+function NewsPage() {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { news, loading, error } = useSelector((state) => state);
+  const { news, loading, error } = useSelector((state) => state.news);
 
   useEffect(() => {
     dispatch(getNews());
   }, []);
+
+  const redirectToUser = (userId) => {
+    navigate({
+      pathname: `/user/${userId}`,
+    });
+  };
 
   return (
     <div className={styles.newsContainer}>
       <div className={styles.title}>News</div>
       {loading && <CircularProgress />}
       {error && `${error}`}
-      {news.lenght === 0
+      {news?.lenght === 0
         ? (
           <div>
             {!loading && !error && 'Нет новостей'}
@@ -27,11 +37,15 @@ function News() {
         )
         : (
           <div>
-            {news.map((item) => (
-              <div className={styles.news} key={item.id}>
-                <div className={styles.title}>{item.title}</div>
-                <div className={styles.text}>{item.text}</div>
-              </div>
+            {news?.map((item) => (
+              <NewsComponent
+                title={item.title}
+                text={item.text}
+                img={item.img}
+                tags={item.tags}
+                key={item.id}
+                onClick={() => redirectToUser(item.userId)}
+              />
             ))}
           </div>
         )}
@@ -39,4 +53,4 @@ function News() {
   );
 }
 
-export default React.memo(News);
+export default React.memo(NewsPage);

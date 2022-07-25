@@ -11,10 +11,9 @@ function reducers(state = initialState, action = {}) {
     case ACTION_TYPES.NEWS_FETCH_REQUESTED:
       return { ...state, loading: true, error: null };
     case ACTION_TYPES.NEWS_FETCH_SUCCEEDED: {
-      const { news } = action.payload;
       return {
         ...state,
-        news,
+        news: action.payload,
         loading: false,
         error: null,
       };
