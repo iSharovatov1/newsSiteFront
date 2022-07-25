@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { CircularProgress } from '@mui/material';
 
-import NewsComponent from '../../components/NewsComponent';
+import NewsCard from '../../components/NewsCard';
 import { getNews } from '../../store/action/newsActions';
 
 import styles from './News.module.scss';
@@ -38,14 +38,7 @@ function NewsPage() {
         : (
           <div>
             {news?.map((item) => (
-              <NewsComponent
-                title={item.title}
-                text={item.text}
-                img={item.img}
-                tags={item.tags}
-                key={item.id}
-                onClick={() => redirectToUser(item.userId)}
-              />
+              <NewsCard news={item} onClick={() => redirectToUser(item.userId)} />
             ))}
           </div>
         )}
@@ -53,4 +46,4 @@ function NewsPage() {
   );
 }
 
-export default React.memo(NewsPage);
+export default memo(NewsPage);
