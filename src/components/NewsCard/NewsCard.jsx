@@ -10,6 +10,7 @@ function NewsCard({
   onClick,
   isLoading = false,
 }) {
+  const defaultImg = 'https://agroinfo.kz/wp-content/uploads/2020/01/nophoto.png';
   return (
     <div>
       { isLoading
@@ -20,9 +21,7 @@ function NewsCard({
         )
         : (
           <div className={styles.news} onClick={onClick}>
-            { news.img
-              ? <img src={news.img} className={styles.img} />
-              : <div className={styles.noImg}><span>No image</span></div>}
+            <img src={news.img || defaultImg} className={styles.img} alt="news" />
             <div className={styles.textContainer}>
               <span className={styles.title}>{news.title}</span>
               <span className={styles.text}>{news.text}</span>
@@ -40,7 +39,12 @@ function NewsCard({
 
 NewsCard.propTypes = {
   isLoading: PropTypes.bool.isRequired,
-  news: PropTypes.object.isRequired,
+  news: PropTypes.shape({
+    img: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
+  }).isRequired,
   onClick: PropTypes.func,
 };
 

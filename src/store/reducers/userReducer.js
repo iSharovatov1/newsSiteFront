@@ -5,44 +5,45 @@ const initialState = {
   news: [],
   newsLoading: false,
   userLoading: false,
-  error: null,
+  newsError: null,
+  userError: null,
 };
 
 function reducers(state = initialState, action = {}) {
   switch (action.type) {
     case ACTION_TYPES.USER_FETCH_REQUESTED:
-      return { ...state, userLoading: true, error: null };
+      return { ...state, userLoading: true, userError: null };
     case ACTION_TYPES.USER_FETCH_SUCCEEDED: {
       return {
         ...state,
         user: action.payload,
         userLoading: false,
-        error: null,
+        userError: null,
       };
     }
     case ACTION_TYPES.USER_FETCH_FAILED: {
       return {
         ...state,
         userLoading: false,
-        error: action.payload.message,
+        userError: action.payload.message,
       };
     }
 
     case ACTION_TYPES.USER_NEWS_FETCH_REQUESTED:
-      return { ...state, newsLoading: true, error: null };
+      return { ...state, newsLoading: true, newsError: null };
     case ACTION_TYPES.USER_NEWS_FETCH_SUCCEEDED: {
       return {
         ...state,
         news: action.payload,
         newsLoading: false,
-        error: null,
+        newsError: null,
       };
     }
     case ACTION_TYPES.USER_NEWS_FETCH_FAILED: {
       return {
         ...state,
         newsLoading: false,
-        error: action.payload.message,
+        newsError: action.payload.message,
       };
     }
     default: return state;

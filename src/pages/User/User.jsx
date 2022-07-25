@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 
 import { CircularProgress } from '@mui/material';
 
-import { ReactComponent as NoAvatar } from '../../images/svg/noAvatar.svg';
 import NewsCard from '../../components/NewsCard';
 import { getUser, getUserNews } from '../../store/action/userActions';
 
@@ -18,50 +17,62 @@ function User() {
     news,
     newsLoading,
     userLoading,
+    newsError,
+    userError,
   } = useSelector((state) => state.user);
-
-  console.log(newsLoading, userLoading);
+  const defaultAvatar = 'https://resp-perinat.med.cap.ru/Content/img/no_avatar.png';
 
   useEffect(() => {
     dispatch(getUser(userId));
     dispatch(getUserNews(userId));
   }, []);
+  console.log(newsError);
 
   return (
     <div>
       <div className={styles.user}>
-        { userLoading
-          ? (
-            <div className={styles.userLoading}>
-              <CircularProgress size={460} />
-            </div>
-          )
+        { userError
+          ? <div>{userError}</div>
           : (
             <>
-              { user.img
-                ? <img src={user.img} className={styles.img} alt="avatar" />
-                : <NoAvatar className={styles.noImg} />}
-              <div className={styles.infoContainer}>
-                <div className={styles.title}>Profile</div>
-                <div className={styles.feildContainer}>
-                  <div>First name:</div>
-                  <div>{user.firstName}</div>
-                </div>
-                <div className={styles.feildContainer}>
-                  <div>Last name:</div>
-                  <div>{user.lastName}</div>
-                </div>
-                <div className={styles.feildContainer}>
-                  <div>Email:</div>
-                  <div>{user.email}</div>
-                </div>
-              </div>
+              { userLoading
+                ? (
+                  <div className={styles.userLoading}>
+                    <CircularProgress size={460} />
+                  </div>
+                )
+                : (
+                  <>
+                    <img src={user.img || defaultAvatar} className={styles.img} alt="avatar" />
+                    <div className={styles.infoContainer}>
+                      <div className={styles.title}>Profile</div>
+                      <div className={styles.feildContainer}>
+                        <div>First name:</div>
+                        <div>{user.firstName}</div>
+                      </div>
+                      <div className={styles.feildContainer}>
+                        <div>Last name:</div>
+                        <div>{user.lastName}</div>
+                      </div>
+                      <div className={styles.feildContainer}>
+                        <div>Email:</div>
+                        <div>{user.email}</div>
+                      </div>
+                    </div>
+                  </>
+                )}
             </>
           )}
       </div>
-      {news.map((item) => (
-        <NewsCard news={item} isLoading={newsLoading} />
-      ))}
+      { newsError
+        ? <div>{newsError}</div>
+        : (
+          <>
+            {news.map((item) => (
+              <NewsCard news={item} isLoading={newsLoading} />
+            ))}
+          </>
+        )}
     </div>
   );
 }
