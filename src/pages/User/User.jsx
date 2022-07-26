@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 
 import NewsCard from '../../components/NewsCard';
-import defaultAvatar from '../../assets/images/defaultAvatar.png';
 import { getUser, getUserNews } from '../../store/action/userActions';
 
 import styles from './User.module.scss';
@@ -21,6 +20,7 @@ function User() {
     newsError,
     userError,
   } = useSelector((state) => state.user);
+  const defaultAvatar = '/assets/images/defaultAvatar.png';
 
   useEffect(() => {
     dispatch(getUser(userId));

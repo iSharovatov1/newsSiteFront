@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import { CircularProgress } from '@mui/material';
-import defaultImg from '../../assets/images/defaultImg.png';
 
 import styles from './NewsCard.module.scss';
 
@@ -11,7 +10,7 @@ function NewsCard({
   onClick,
   isLoading = false,
 }) {
-  console.log(news.user);
+  const defaultImg = '/assets/images/defaultImg.png';
   return (
     <div>
       { isLoading
