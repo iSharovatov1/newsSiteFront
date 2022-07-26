@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 
 import NewsCard from '../../components/NewsCard';
+import defaultAvatar from '../../assets/images/defaultAvatar.png';
 import { getUser, getUserNews } from '../../store/action/userActions';
 
 import styles from './User.module.scss';
@@ -20,13 +21,11 @@ function User() {
     newsError,
     userError,
   } = useSelector((state) => state.user);
-  const defaultAvatar = 'https://resp-perinat.med.cap.ru/Content/img/no_avatar.png';
 
   useEffect(() => {
     dispatch(getUser(userId));
     dispatch(getUserNews(userId));
   }, []);
-  console.log(newsError);
 
   return (
     <div>
@@ -69,7 +68,7 @@ function User() {
         : (
           <>
             {news.map((item) => (
-              <NewsCard news={item} isLoading={newsLoading} />
+              <NewsCard news={item} isLoading={newsLoading} key={item.id} />
             ))}
           </>
         )}

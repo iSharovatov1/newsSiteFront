@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import { CircularProgress } from '@mui/material';
+import defaultImg from '../../assets/images/defaultImg.png';
 
 import styles from './NewsCard.module.scss';
 
@@ -10,7 +11,7 @@ function NewsCard({
   onClick,
   isLoading = false,
 }) {
-  const defaultImg = 'https://agroinfo.kz/wp-content/uploads/2020/01/nophoto.png';
+  console.log(news.user);
   return (
     <div>
       { isLoading
@@ -25,10 +26,13 @@ function NewsCard({
             <div className={styles.textContainer}>
               <span className={styles.title}>{news.title}</span>
               <span className={styles.text}>{news.text}</span>
-              <div className={styles.tagsContainer}>
-                {news.tags.split(',').map((item) => (
-                  <div className={styles.tag} key={item}>{item}</div>
-                ))}
+              <div className={styles.footer}>
+                <div className={styles.tagsContainer}>
+                  {news.tags.split(',').map((item) => (
+                    <div className={styles.tag} key={item}>{item}</div>
+                  ))}
+                </div>
+                {news.user && <div className={styles.autor}>by {`${news.user.firstName} ${news.user.lastName}`}</div>}
               </div>
             </div>
           </div>

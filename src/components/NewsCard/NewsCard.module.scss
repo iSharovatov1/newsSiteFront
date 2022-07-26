@@ -38,15 +38,24 @@
       font-size: 18px;
       font-weight: 400;
     }
-    .tagsContainer {
-      position: absolute;
-      bottom: 0; 
+    .footer {
       display: flex;
-      .tag {
-        border: 1px solid lightgray;
-        border-radius: 4px;
-        padding: 5px;
-        margin: 0 5px;
+      justify-content: space-between;
+      position: absolute;
+      bottom: 0;
+      width: calc(100% - 40px);
+      .tagsContainer {
+        display: flex;
+        max-width: 500px;
+        .tag {
+          border: 1px solid lightgray;
+          border-radius: 4px;
+          padding: 5px;
+          margin: 0 5px;
+        }
+      }
+      .autor {
+
       }
     }
   }

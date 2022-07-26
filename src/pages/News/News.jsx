@@ -9,7 +9,7 @@ import { getNews } from '../../store/action/newsActions';
 
 import styles from './News.module.scss';
 
-function NewsPage() {
+function News() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { news, loading, error } = useSelector((state) => state.news);
@@ -38,7 +38,12 @@ function NewsPage() {
         : (
           <div>
             {news?.map((item) => (
-              <NewsCard news={item} onClick={() => redirectToUser(item.userId)} />
+              <NewsCard
+                news={item}
+                onClick={() => redirectToUser(item.userId)}
+                isLoading={loading || false}
+                key={item.id}
+              />
             ))}
           </div>
         )}
@@ -46,4 +51,4 @@ function NewsPage() {
   );
 }
 
-export default memo(NewsPage);
+export default memo(News);
