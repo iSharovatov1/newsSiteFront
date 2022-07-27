@@ -1,6 +1,10 @@
 .profile {
   display: flex;
-  width: 100%;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 5px;
+  width: calc(100% - 64px);
   .img {
     height: 400px;
     width: 400px;

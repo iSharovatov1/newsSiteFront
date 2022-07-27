@@ -2,13 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { CircularProgress } from '@mui/material';
-
-import NewsCard from '../../components/NewsCard';
+import NewsList from '../../components/NewsList';
 import UserProfile from '../../components/UserProfile';
 import { getUser, getUserNews } from '../../store/action/userActions';
-
-import styles from './User.module.scss';
 
 function User() {
   const dispatch = useDispatch();
@@ -29,32 +25,8 @@ function User() {
 
   return (
     <div>
-      <div className={styles.user}>
-        { !userError && !userLoading
-          && <UserProfile user={user} />}
-        { userError && <div>{userError}</div>}
-        { userLoading && (
-        <div className={styles.userLoading}>
-          <CircularProgress size={460} />
-        </div>
-        )}
-      </div>
-      { !newsLoading && !newsError && userNews.lenght !== 0
-       && (
-       <div>
-         {userNews?.map((item) => (
-           <NewsCard
-             news={item}
-             key={item.id}
-           />
-         ))}
-       </div>
-       )}
-      <div>
-        {!newsLoading && !newsError && userNews.lenght === 0 && 'Нет новостей'}
-      </div>
-      {newsLoading && <CircularProgress />}
-      {newsError && <div>{newsError}</div>}
+      <UserProfile user={user} error={userError} isLoading={userLoading} />
+      <NewsList news={userNews} error={newsError} isLoading={newsLoading} />
     </div>
   );
 }

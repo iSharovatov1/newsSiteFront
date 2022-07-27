@@ -10,7 +10,7 @@ function NewsCard({
   onClick,
 }) {
   return (
-    <div className={styles.news} onClick={onClick}>
+    <div className={styles.news} onClick={() => onClick(news.userId)}>
       <img src={news.img || noImage} className={styles.img} alt="news" />
       <div className={styles.textContainer}>
         <span className={styles.title}>{news.title}</span>
@@ -34,7 +34,7 @@ function NewsCard({
 }
 
 NewsCard.defaultProps = {
-  onClick: () => null,
+  onClick: () => {},
 };
 
 NewsCard.propTypes = {

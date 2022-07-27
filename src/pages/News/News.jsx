@@ -2,9 +2,7 @@ import React, { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { CircularProgress } from '@mui/material';
-
-import NewsCard from '../../components/NewsCard';
+import NewsList from '../../components/NewsList';
 import { getNews } from '../../store/action/newsActions';
 
 import styles from './News.module.scss';
@@ -27,23 +25,12 @@ function News() {
   return (
     <div className={styles.newsContainer}>
       <div className={styles.title}>News</div>
-      { !loading && !error && news.lenght !== 0
-       && (
-       <div>
-         {news?.map((item) => (
-           <NewsCard
-             news={item}
-             onClick={() => redirectToUser(item.userId)}
-             key={item.id}
-           />
-         ))}
-       </div>
-       )}
-      <div>
-        {!loading && !error && news.lenght === 0 && 'Нет новостей'}
-      </div>
-      {loading && <CircularProgress />}
-      {error && <div>{error}</div>}
+      <NewsList
+        news={news}
+        loading={loading}
+        error={error}
+        onClickItem={redirectToUser}
+      />
     </div>
   );
 }
