@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import NewsPage from './pages/News';
-import User from './pages/User/User';
+import User from './pages/User';
 
 function App() {
   return (

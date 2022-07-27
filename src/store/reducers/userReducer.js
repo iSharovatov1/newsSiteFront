@@ -2,7 +2,7 @@ import * as ACTION_TYPES from '../../constants/actionTypes';
 
 const initialState = {
   user: {},
-  news: [],
+  userNews: [],
   newsLoading: false,
   userLoading: false,
   newsError: null,
@@ -34,7 +34,7 @@ function reducers(state = initialState, action = {}) {
     case ACTION_TYPES.USER_NEWS_FETCH_SUCCEEDED: {
       return {
         ...state,
-        news: action.payload,
+        userNews: action.payload,
         newsLoading: false,
         newsError: null,
       };

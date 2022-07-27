@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 
 import NewsCard from '../../components/NewsCard';
+import UserProfile from '../../components/UserProfile';
 import { getUser, getUserNews } from '../../store/action/userActions';
 
 import styles from './User.module.scss';
@@ -14,13 +15,12 @@ function User() {
   const { userId } = useParams();
   const {
     user,
-    news,
+    userNews,
     newsLoading,
     userLoading,
     newsError,
     userError,
   } = useSelector((state) => state.user);
-  const defaultAvatar = '/assets/images/defaultAvatar.png';
 
   useEffect(() => {
     dispatch(getUser(userId));
@@ -30,48 +30,31 @@ function User() {
   return (
     <div>
       <div className={styles.user}>
-        { userError
-          ? <div>{userError}</div>
-          : (
-            <>
-              { userLoading
-                ? (
-                  <div className={styles.userLoading}>
-                    <CircularProgress size={460} />
-                  </div>
-                )
-                : (
-                  <>
-                    <img src={user.img || defaultAvatar} className={styles.img} alt="avatar" />
-                    <div className={styles.infoContainer}>
-                      <div className={styles.title}>Profile</div>
-                      <div className={styles.feildContainer}>
-                        <div>First name:</div>
-                        <div>{user.firstName}</div>
-                      </div>
-                      <div className={styles.feildContainer}>
-                        <div>Last name:</div>
-                        <div>{user.lastName}</div>
-                      </div>
-                      <div className={styles.feildContainer}>
-                        <div>Email:</div>
-                        <div>{user.email}</div>
-                      </div>
-                    </div>
-                  </>
-                )}
-            </>
-          )}
-      </div>
-      { newsError
-        ? <div>{newsError}</div>
-        : (
-          <>
-            {news.map((item) => (
-              <NewsCard news={item} isLoading={newsLoading} key={item.id} />
-            ))}
-          </>
+        { !userError && !userLoading
+          && <UserProfile user={user} />}
+        { userError && <div>{userError}</div>}
+        { userLoading && (
+        <div className={styles.userLoading}>
+          <CircularProgress size={460} />
+        </div>
         )}
+      </div>
+      { !newsLoading && !newsError && userNews.lenght !== 0
+       && (
+       <div>
+         {userNews?.map((item) => (
+           <NewsCard
+             news={item}
+             key={item.id}
+           />
+         ))}
+       </div>
+       )}
+      <div>
+        {!newsLoading && !newsError && userNews.lenght === 0 && 'Нет новостей'}
+      </div>
+      {newsLoading && <CircularProgress />}
+      {newsError && <div>{newsError}</div>}
     </div>
   );
 }

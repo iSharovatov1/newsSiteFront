@@ -8,32 +8,7 @@
   .userLoading {
     margin: 10px calc(50% - 230px);
   }
-  .img {
-    height: 400px;
-    width: 400px;
-    object-fit: cover; 
-    border-radius: 10px;
-  }
-  .infoContainer {
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 5px 20px;
-    width: calc(100% - 440px);
-    .title {
-      text-align: center;
-      font-size: 25px;
-      font-weight: 500;
-      margin-bottom: 50px;
-    }
-    .feildContainer {
-      width: 50%;
-      display: flex;
-      justify-content: space-between;
-      font-size: 20px;
-      font-weight: 500;
-      padding: 10px 80px;
-    }
-  }
+}
+.newsLoading {
+  margin: 30px calc(50% - 115px);
 }

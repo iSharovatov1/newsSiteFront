@@ -27,26 +27,23 @@ function News() {
   return (
     <div className={styles.newsContainer}>
       <div className={styles.title}>News</div>
+      { !loading && !error && news.lenght !== 0
+       && (
+       <div>
+         {news?.map((item) => (
+           <NewsCard
+             news={item}
+             onClick={() => redirectToUser(item.userId)}
+             key={item.id}
+           />
+         ))}
+       </div>
+       )}
+      <div>
+        {!loading && !error && news.lenght === 0 && 'Нет новостей'}
+      </div>
       {loading && <CircularProgress />}
-      {error && `${error}`}
-      {news?.lenght === 0
-        ? (
-          <div>
-            {!loading && !error && 'Нет новостей'}
-          </div>
-        )
-        : (
-          <div>
-            {news?.map((item) => (
-              <NewsCard
-                news={item}
-                onClick={() => redirectToUser(item.userId)}
-                isLoading={loading || false}
-                key={item.id}
-              />
-            ))}
-          </div>
-        )}
+      {error && <div>{error}</div>}
     </div>
   );
 }
