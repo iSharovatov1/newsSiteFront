@@ -14,29 +14,34 @@ function NewsList({
   isLoading,
   onClickItem,
 }) {
-  return (
-    <div>
-      { !isLoading && !error && news.length !== 0
-       && (
-       <div>
-         {news.map((item) => (
-           <NewsCard
-             news={item}
-             key={item.id}
-             onClick={onClickItem}
-           />
-         ))}
-       </div>
-       )}
-      <div className={styles.text}>
-        {!isLoading && !error && news.length === 0 && 'Нет новостей'}
-      </div>
-      {isLoading && (
+  if (isLoading) {
+    return (
       <div className={styles.loading}>
         <CircularProgress size={100} />
       </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className={classNames(styles.text, styles.error)}>{error}</div>
+    );
+  }
+  return (
+    <div>
+      {news.length !== 0 && (
+        <div>
+          {news.map((item) => (
+            <NewsCard
+              news={item}
+              key={item.id}
+              onClick={onClickItem}
+            />
+          ))}
+        </div>
       )}
-      {error && <div className={classNames(styles.text, styles.error)}>{error}</div>}
+      <div className={styles.text}>
+        {news.length === 0 && 'Нет новостей'}
+      </div>
     </div>
   );
 }

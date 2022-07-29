@@ -5,6 +5,9 @@
   padding: 10px;
   margin: 5px;
   width: calc(100% - 64px);
+  .userLoading {
+    margin: 20px calc(50% - 230px);
+  }
   .img {
     height: 400px;
     width: 400px;
