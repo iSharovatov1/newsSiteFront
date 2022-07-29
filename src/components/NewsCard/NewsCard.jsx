@@ -21,12 +21,11 @@ function NewsCard({
               <div className={styles.tag} key={item}>{item}</div>
             ))}
           </div>
-          {news.user
-            && (
-              <div>
-                by {news.user.email}
-              </div>
-            )}
+          {news.user && (
+            <div>
+              by {news.user.email}
+            </div>
+          )}
         </div>
       </div>
     </div>

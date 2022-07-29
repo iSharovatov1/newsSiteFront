@@ -10,18 +10,14 @@ const noAvatar = '/assets/images/defaultAvatar.png';
 function UserProfile({ user, error, isLoading }) {
   if (isLoading) {
     return (
-      <div className={styles.profile}>
-        <div className={styles.userLoading}>
-          <CircularProgress size={460} />
-        </div>
+      <div className={styles.userLoading}>
+        <CircularProgress size={460} />
       </div>
     );
   }
   if (error) {
     return (
-      <div className={styles.profile}>
-        <div>{error}</div>
-      </div>
+      <div className={styles.error}>{error}</div>
     );
   }
   return (

@@ -5,9 +5,6 @@
   padding: 10px;
   margin: 5px;
   width: calc(100% - 64px);
-  .userLoading {
-    margin: 20px calc(50% - 230px);
-  }
   .img {
     height: 400px;
     width: 400px;
@@ -36,4 +33,12 @@
       padding: 10px 80px;
     }
   }
+}
+.userLoading {
+  margin: 20px calc(50% - 230px);
+}
+.error {
+  text-align: center;
+  font-size: 30px;
+  color: rgb(216, 1, 1);
 }

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import * as cn from 'classnames';
 
 import { CircularProgress } from '@mui/material';
 
@@ -23,24 +23,22 @@ function NewsList({
   }
   if (error) {
     return (
-      <div className={classNames(styles.text, styles.error)}>{error}</div>
+      <div className={cn(styles.text, styles.error)}>{error}</div>
     );
+  }
+  if (news.length === 0) {
+    return (<div className={styles.text}>Нет новостей</div>);
   }
   return (
     <div>
-      {news.length !== 0 && (
-        <div>
-          {news.map((item) => (
-            <NewsCard
-              news={item}
-              key={item.id}
-              onClick={onClickItem}
-            />
-          ))}
-        </div>
-      )}
-      <div className={styles.text}>
-        {news.length === 0 && 'Нет новостей'}
+      <div>
+        {news.map((item) => (
+          <NewsCard
+            news={item}
+            key={item.id}
+            onClick={onClickItem}
+          />
+        ))}
       </div>
     </div>
   );
