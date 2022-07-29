@@ -1,0 +1,14 @@
+.user {
+  display: flex;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 5px;
+  width: calc(100% - 64px);
+  .userLoading {
+    margin: 10px calc(50% - 230px);
+  }
+}
+.newsLoading {
+  margin: 30px calc(50% - 115px);
+}

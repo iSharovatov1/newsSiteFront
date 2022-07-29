@@ -1,13 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import News from './components/News/News';
+import NewsPage from './pages/News';
+import User from './pages/User';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<News />} />
+        <Route path="/" element={<NewsPage />} />
+        <Route path="/user/:userId" element={<User />} />
       </Routes>
     </BrowserRouter>
   );

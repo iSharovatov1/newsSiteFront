@@ -1,0 +1,44 @@
+.profile {
+  display: flex;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 5px;
+  width: calc(100% - 64px);
+  .img {
+    height: 400px;
+    width: 400px;
+    object-fit: cover; 
+    border-radius: 10px;
+  }
+  .infoContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px 20px;
+    width: calc(100% - 440px);
+    .title {
+      text-align: center;
+      font-size: 25px;
+      font-weight: 500;
+      margin-bottom: 50px;
+    }
+    .feildContainer {
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      font-weight: 500;
+      padding: 10px 80px;
+    }
+  }
+}
+.userLoading {
+  margin: 20px calc(50% - 230px);
+}
+.error {
+  text-align: center;
+  font-size: 30px;
+  color: rgb(216, 1, 1);
+}
